@@ -1,0 +1,76 @@
+DELETE /movies
+
+PUT /movies/movie/_mapping
+{
+  "movie": {
+    "properties": {
+        "suggest": {
+            "type": "completion",
+            "analyzer": "simple",
+            "search_analyzer": "simple",
+            "payloads": true
+        },
+        "genres_raw" : {
+           "type": "string",
+          "index": "not_analyzed"
+        },
+        "directors_raw": {
+           "type": "string",
+          "index": "not_analyzed"
+        },
+        "writers_raw" : {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "actors_raw" : {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "countries_raw" : {
+          "type": "string",
+          "index": "not_analyzed"
+        }
+
+    }
+}
+}
+
+GET /movies/_mapping
+
+GET /movies/_search
+
+
+
+{
+    "title": "The Dark Knight",
+    "year": 2008,
+    "rated": ["PG-13"],
+    "released": "2008-07-18",
+    "runtimeMinutes": 152,
+    "genres": ["Action", "Crime", "Drama"],
+    "directors": ["Christopher Nolan"],
+    "writers": ["Jonathan Nolan", "Christopher Nolan", "David S. Goyer", "Bob Kane"],
+    "actors": ["Christian Bale", "Heath Ledger", "Aaron Eckhart", "Michael Caine"],
+    "plot": "When Batman, Gordon and Harvey Dent launch an assault on the mob, they let the clown out of the box, the Joker, bent on turning Gotham on itself and bringing any heroes down to his level.",
+    "languages": ["English", "Mandarin"],
+    "countries": ["USA", "UK"],
+    "awards": "Won 2 Oscars. Another 94 wins & 69 nominations.",
+    "poster": "https://s3-eu-west-1.amazonaws.com/imdbimages/images/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+    "metaScore": 82,
+    "imdbRating": 9,
+    "imdbVotes": 1133701,
+    "imdbId": "tt0468569",
+    "type": "Movie",
+    "suggest": {
+        "input": ["The", "Dark", "Knight"],
+        "output": "The Dark Knight",
+        "payload": {
+            "id": "tt0468569"
+        }
+    },
+    "genres_raw": ["Action", "Crime", "Drama"],
+    "directors_raw": ["Christopher Nolan"],
+    "writers_raw": ["Jonathan Nolan", "Christopher Nolan", "David S. Goyer", "Bob Kane"],
+    "actors_raw": ["Christian Bale", "Heath Ledger", "Aaron Eckhart", "Michael Caine"],
+    "countries_raw": ["USA", "UK"]
+}
